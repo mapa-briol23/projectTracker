@@ -5,6 +5,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const supabase = require('./config/supabaseClient');
 const authRoutes = require('./routes/authRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
+const projectRoutes = require('./routes/projectRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +20,8 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/projects', projectRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {

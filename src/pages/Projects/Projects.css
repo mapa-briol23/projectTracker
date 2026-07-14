@@ -1,0 +1,292 @@
+/* Shared page heading */
+.projects-page h1,
+.project-form-page h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--space-lg);
+}
+
+/* ProjectList toolbar */
+.projects-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.projects-search {
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+}
+
+.projects-toolbar select {
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  background: var(--color-white);
+  color: var(--color-gray-700);
+}
+
+.projects-toolbar .projects-search:focus,
+.projects-toolbar select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+/* Tables (ProjectList + ProjectDetail tasks) */
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.projects-table th {
+  background: var(--color-gray-50);
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-gray-500);
+  white-space: nowrap;
+}
+
+.projects-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-gray-200);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+  white-space: nowrap;
+}
+
+.projects-table tbody tr:hover {
+  background: var(--color-gray-50);
+}
+
+.project-name-link {
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.project-name-link:hover {
+  text-decoration: underline;
+}
+
+.row-actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--color-gray-500);
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--color-gray-100);
+  color: var(--color-gray-900);
+}
+
+.icon-btn-danger:hover {
+  background: var(--badge-danger-bg);
+  color: var(--color-danger);
+}
+
+/* Form fields (ProjectForm) */
+.project-form {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  max-width: 640px;
+}
+
+.form-row {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.form-row .form-field {
+  flex: 1;
+}
+
+.form-field {
+  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-field label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-gray-700);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.form-field input.input-error,
+.form-field select.input-error,
+.form-field textarea.input-error {
+  border-color: var(--color-danger);
+}
+
+.field-error {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+/* ProjectDetail */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-gray-500);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  margin-bottom: var(--space-lg);
+}
+
+.back-link:hover {
+  color: var(--color-gray-700);
+}
+
+.project-header-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.project-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.project-header-top h1 {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--space-sm);
+}
+
+.badge-row {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.project-header-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.project-description {
+  margin-top: var(--space-md);
+  color: var(--color-gray-700);
+  font-size: var(--font-size-sm);
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+}
+
+.progress-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--color-gray-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-xs);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
+}
+
+.progress-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+}
+
+.tasks-section h2 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: var(--space-md);
+}

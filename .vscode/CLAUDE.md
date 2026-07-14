@@ -33,6 +33,6 @@ Full specification is in PROJECT_TRACKER_SPEC.md — always reference it.
 
 ## Current Phase
 
-Phase 4 — Layout (Sidebar + Toast + Protected Routes) (complete)
-Next: Phase 5 — Dashboard Page
+Phase 6 — Project CRUD (complete)
+Next: Phase 7 — Task CRUD
 (Update this line manually as you complete each phase)

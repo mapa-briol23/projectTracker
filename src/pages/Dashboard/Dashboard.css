@@ -1,0 +1,120 @@
+.dashboard-page h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.dashboard-welcome {
+  color: var(--color-gray-500);
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-xl);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-left: 4px solid var(--color-gray-300);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+}
+
+.stat-card-primary {
+  border-left-color: var(--color-primary);
+}
+
+.stat-card-info {
+  border-left-color: var(--color-info);
+}
+
+.stat-card-success {
+  border-left-color: var(--color-success);
+}
+
+.stat-card-icon {
+  font-size: 24px;
+  margin-bottom: var(--space-sm);
+}
+
+.stat-card-primary .stat-card-icon {
+  color: var(--color-primary);
+}
+
+.stat-card-info .stat-card-icon {
+  color: var(--color-info);
+}
+
+.stat-card-success .stat-card-icon {
+  color: var(--color-success);
+}
+
+.stat-card-count {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.stat-card-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+  margin-top: var(--space-xs);
+}
+
+.recent-projects h2 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: var(--space-md);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-table th {
+  background: var(--color-gray-50);
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-gray-500);
+}
+
+.dashboard-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-gray-200);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+}
+
+.dashboard-table tbody tr {
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.dashboard-table tbody tr:hover {
+  background: var(--color-gray-50);
+}

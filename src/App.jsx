@@ -4,6 +4,10 @@ import { ToastProvider } from './context/ToastContext';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import Sidebar from './components/common/Sidebar';
 import Login from './pages/Login/Login';
+import Dashboard from './pages/Dashboard/Dashboard';
+import ProjectList from './pages/Projects/ProjectList';
+import ProjectForm from './pages/Projects/ProjectForm';
+import ProjectDetail from './pages/Projects/ProjectDetail';
 import './App.css';
 
 function AppLayout({ children }) {
@@ -25,7 +29,7 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <AppLayout>
-              <div>Dashboard</div>
+              <Dashboard />
             </AppLayout>
           </ProtectedRoute>
         }
@@ -35,7 +39,7 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <AppLayout>
-              <div>Projects</div>
+              <ProjectList />
             </AppLayout>
           </ProtectedRoute>
         }
@@ -45,7 +49,7 @@ function AppRoutes() {
         element={
           <ProtectedRoute allowedRoles={['project_manager']}>
             <AppLayout>
-              <div>New Project</div>
+              <ProjectForm />
             </AppLayout>
           </ProtectedRoute>
         }
@@ -55,7 +59,7 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <AppLayout>
-              <div>Project Detail</div>
+              <ProjectDetail />
             </AppLayout>
           </ProtectedRoute>
         }
@@ -65,7 +69,7 @@ function AppRoutes() {
         element={
           <ProtectedRoute allowedRoles={['project_manager']}>
             <AppLayout>
-              <div>Edit Project</div>
+              <ProjectForm />
             </AppLayout>
           </ProtectedRoute>
         }
