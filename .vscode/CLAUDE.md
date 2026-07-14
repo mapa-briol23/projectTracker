@@ -33,6 +33,6 @@ Full specification is in PROJECT_TRACKER_SPEC.md — always reference it.
 
 ## Current Phase
 
-Phase 2 — Backend Foundation (Config + Auth Middleware) (complete)
-Next: Phase 3 — Authentication (Backend Routes + Frontend Login)
+Phase 4 — Layout (Sidebar + Toast + Protected Routes) (complete)
+Next: Phase 5 — Dashboard Page
 (Update this line manually as you complete each phase)

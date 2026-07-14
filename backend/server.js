@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const supabase = require('./config/supabaseClient');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +17,7 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// Routes will be mounted here
+app.use('/api/auth', authRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {

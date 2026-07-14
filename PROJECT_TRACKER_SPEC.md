@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS tasks (
 CREATE OR REPLACE FUNCTION handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-  INSERT INTO profiles (id, full_name, email, role)
+  INSERT INTO public.profiles (id, full_name, email, role)
   VALUES (
     NEW.id,
     COALESCE(NEW.raw_user_meta_data->>'full_name', 'New User'),
@@ -259,7 +259,11 @@ BEGIN
   );
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public;
+-- NOTE: this trigger fires as the supabase_auth_admin role, whose search_path
+-- does not include "public" by default. Schema-qualifying profiles as
+-- public.profiles (and pinning search_path on the function) avoids a
+-- "relation profiles does not exist" error on every signup.
 
 -- Drop the trigger if it already exists, then create it
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
