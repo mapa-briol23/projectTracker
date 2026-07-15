@@ -42,20 +42,31 @@ export default function ProjectList() {
 
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState('');
   const [priority, setPriority] = useState('');
   const [deleteTarget, setDeleteTarget] = useState(null);
 
+  useEffect(() => {
+    document.title = 'Projects | Project Tracker';
+  }, []);
+
   const fetchProjects = useCallback(async () => {
     setLoading(true);
+    setLoadError(false);
     const params = {};
     if (search) params.search = search;
     if (status) params.status = status;
     if (priority) params.priority = priority;
-    const { data } = await projectApi.getAll(params);
-    setProjects(data.projects);
-    setLoading(false);
+    try {
+      const { data } = await projectApi.getAll(params);
+      setProjects(data.projects);
+    } catch {
+      setLoadError(true);
+    } finally {
+      setLoading(false);
+    }
   }, [search, status, priority]);
 
   useEffect(() => {
@@ -109,6 +120,13 @@ export default function ProjectList() {
 
       {loading ? (
         <LoadingSpinner />
+      ) : loadError ? (
+        <EmptyState
+          title="Something went wrong"
+          message="We couldn't load your projects."
+          actionLabel="Retry"
+          onAction={fetchProjects}
+        />
       ) : projects.length === 0 ? (
         <EmptyState
           icon={<RiFolderLine />}

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '../../context/ToastContext';
 import projectApi from '../../api/projectApi';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
+import EmptyState from '../../components/common/EmptyState';
 import './Projects.css';
 
 const STATUS_OPTIONS = [
@@ -36,16 +37,18 @@ export default function ProjectForm() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(isEditMode);
+  const [loadError, setLoadError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!isEditMode) return;
+    document.title = `${isEditMode ? 'Edit Project' : 'Create Project'} | Project Tracker`;
+  }, [isEditMode]);
 
-    let cancelled = false;
-
-    async function loadProject() {
+  async function loadProject() {
+    setLoading(true);
+    setLoadError(false);
+    try {
       const { data } = await projectApi.getById(id);
-      if (cancelled) return;
       const p = data.project;
       setForm({
         name: p.name || '',
@@ -55,13 +58,17 @@ export default function ProjectForm() {
         start_date: p.start_date || '',
         end_date: p.end_date || '',
       });
+    } catch {
+      setLoadError(true);
+    } finally {
       setLoading(false);
     }
+  }
 
-    loadProject();
-    return () => {
-      cancelled = true;
-    };
+  useEffect(() => {
+    if (isEditMode) {
+      loadProject();
+    }
   }, [id, isEditMode]);
 
   function handleChange(field) {
@@ -108,6 +115,17 @@ export default function ProjectForm() {
 
   if (loading) {
     return <LoadingSpinner fullScreen />;
+  }
+
+  if (loadError) {
+    return (
+      <EmptyState
+        title="Something went wrong"
+        message="We couldn't load this project."
+        actionLabel="Retry"
+        onAction={loadProject}
+      />
+    );
   }
 
   return (

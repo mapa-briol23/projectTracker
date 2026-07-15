@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { RiFolderChartLine, RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import { useAuth } from '../../context/AuthContext';
@@ -11,6 +11,10 @@ function validateEmail(email) {
 export default function Login() {
   const { user, loading, login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = 'Login | Project Tracker';
+  }, []);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

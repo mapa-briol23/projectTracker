@@ -21,7 +21,7 @@ async function login(req, res) {
 
   const { data: profile, error: profileError } = await supabase
     .from('profiles')
-    .select('id, email, full_name, role')
+    .select('id, email, full_name, role, status, created_at')
     .eq('id', user.id)
     .single();
 

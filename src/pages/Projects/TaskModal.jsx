@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import userApi from '../../api/userApi';
+import { useToast } from '../../context/ToastContext';
 import './Projects.css';
 
 const STATUS_OPTIONS = [
@@ -25,6 +26,7 @@ const EMPTY_FORM = {
 
 export default function TaskModal({ isOpen, onClose, onSubmit, initialTask }) {
   const isEditMode = Boolean(initialTask);
+  const { showToast } = useToast();
 
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
@@ -33,7 +35,10 @@ export default function TaskModal({ isOpen, onClose, onSubmit, initialTask }) {
 
   useEffect(() => {
     if (!isOpen) return;
-    userApi.getAll().then(({ data }) => setUsers(data.users));
+    userApi
+      .getAll()
+      .then(({ data }) => setUsers(data.users))
+      .catch(() => showToast('Failed to load users for assignment', 'error'));
   }, [isOpen]);
 
   useEffect(() => {

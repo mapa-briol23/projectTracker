@@ -12,12 +12,18 @@
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--space-lg);
   margin-bottom: var(--space-2xl);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }

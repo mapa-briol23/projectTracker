@@ -37,20 +37,32 @@ export default function ProjectDetail() {
 
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [taskModalOpen, setTaskModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [taskDeleteTarget, setTaskDeleteTarget] = useState(null);
 
   async function loadProject() {
-    const { data } = await projectApi.getById(id);
-    setProject(data.project);
-    setLoading(false);
+    setLoading(true);
+    setLoadError(false);
+    try {
+      const { data } = await projectApi.getById(id);
+      setProject(data.project);
+    } catch {
+      setLoadError(true);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     loadProject();
   }, [id]);
+
+  useEffect(() => {
+    document.title = project ? `${project.name} | Project Tracker` : 'Project | Project Tracker';
+  }, [project]);
 
   async function handleDeleteConfirm() {
     try {
@@ -115,8 +127,19 @@ export default function ProjectDetail() {
     }
   }
 
-  if (loading || !project) {
+  if (loading) {
     return <LoadingSpinner fullScreen />;
+  }
+
+  if (loadError || !project) {
+    return (
+      <EmptyState
+        title="Something went wrong"
+        message="We couldn't load this project."
+        actionLabel="Retry"
+        onAction={loadProject}
+      />
+    );
   }
 
   const totalTasks = project.tasks.length;
