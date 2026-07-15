@@ -6,7 +6,6 @@ import Sidebar from './components/common/Sidebar';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import ProjectList from './pages/Projects/ProjectList';
-import ProjectForm from './pages/Projects/ProjectForm';
 import ProjectDetail from './pages/Projects/ProjectDetail';
 import Profile from './pages/Profile/Profile';
 import NotFound from './pages/NotFound/NotFound';
@@ -46,32 +45,13 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/projects/new"
-        element={
-          <ProtectedRoute allowedRoles={['project_manager']}>
-            <AppLayout>
-              <ProjectForm />
-            </AppLayout>
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/projects/new" element={<Navigate to="/projects" replace />} />
       <Route
         path="/projects/:id"
         element={
           <ProtectedRoute>
             <AppLayout>
               <ProjectDetail />
-            </AppLayout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/projects/:id/edit"
-        element={
-          <ProtectedRoute allowedRoles={['project_manager']}>
-            <AppLayout>
-              <ProjectForm />
             </AppLayout>
           </ProtectedRoute>
         }

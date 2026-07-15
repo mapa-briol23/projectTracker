@@ -1,11 +1,11 @@
 import './StatusBadge.css';
 
 const STATUS_CONFIG = {
-  not_started: { label: 'Not Started', variant: 'neutral' },
-  to_do: { label: 'To Do', variant: 'neutral' },
-  in_progress: { label: 'In Progress', variant: 'info' },
-  completed: { label: 'Completed', variant: 'success' },
-  on_hold: { label: 'On Hold', variant: 'warning' },
+  not_started: { label: 'Not Started', variant: 'blue' },
+  to_do: { label: 'To Do', variant: 'gray' },
+  in_progress: { label: 'In Progress', variant: 'amber' },
+  completed: { label: 'Completed', variant: 'green' },
+  on_hold: { label: 'On Hold', variant: 'gray' },
 };
 
 const PRIORITY_CONFIG = {
@@ -22,9 +22,20 @@ function toTitleCase(value) {
 }
 
 export default function StatusBadge({ status, type }) {
-  const config = type === 'priority' ? PRIORITY_CONFIG[status] : STATUS_CONFIG[status];
-  const variant = config?.variant || 'neutral';
-  const label = config?.label || toTitleCase(status);
+  if (type === 'priority') {
+    const config = PRIORITY_CONFIG[status];
+    const variant = config?.variant || 'neutral';
+    return <span className={`status-badge status-badge-${variant}`}>{toTitleCase(status || '')}</span>;
+  }
 
-  return <span className={`status-badge status-badge-${variant}`}>{label}</span>;
+  const config = STATUS_CONFIG[status];
+  const variant = config?.variant || 'gray';
+  const label = config?.label || toTitleCase(status || '');
+
+  return (
+    <span className={`status-badge status-badge-dot status-${variant}`}>
+      <span className="status-dot-marker" />
+      {label}
+    </span>
+  );
 }

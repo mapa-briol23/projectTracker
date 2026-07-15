@@ -8,19 +8,10 @@
   white-space: nowrap;
 }
 
+/* Priority variants (unchanged, used only when type="priority") */
 .status-badge-neutral {
   background: var(--badge-neutral-bg);
   color: var(--color-gray-700);
-}
-
-.status-badge-info {
-  background: var(--badge-info-bg);
-  color: var(--color-info);
-}
-
-.status-badge-success {
-  background: var(--badge-success-bg);
-  color: var(--color-success);
 }
 
 .status-badge-warning {
@@ -31,4 +22,52 @@
 .status-badge-danger {
   background: var(--badge-danger-bg);
   color: var(--color-danger);
+}
+
+/* Status variants (with dot marker) */
+.status-badge-dot {
+  gap: 6px;
+}
+
+.status-dot-marker {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-blue .status-dot-marker {
+  background: #3b82f6;
+}
+
+.status-amber {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-amber .status-dot-marker {
+  background: #f59e0b;
+}
+
+.status-gray {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.status-gray .status-dot-marker {
+  background: #9ca3af;
+}
+
+.status-green {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.status-green .status-dot-marker {
+  background: #22c55e;
 }
