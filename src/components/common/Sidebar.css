@@ -93,3 +93,30 @@
   background: var(--sidebar-hover);
   color: var(--color-white);
 }
+
+.sidebar-brand svg,
+.sidebar-link svg,
+.sidebar-logout svg {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar-brand span,
+  .sidebar-link span,
+  .sidebar-logout span,
+  .sidebar-user {
+    display: none;
+  }
+
+  .sidebar-brand,
+  .sidebar-link,
+  .sidebar-logout {
+    justify-content: center;
+  }
+}

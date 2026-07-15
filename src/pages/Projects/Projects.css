@@ -284,9 +284,27 @@
   color: var(--color-gray-500);
 }
 
+.tasks-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
 .tasks-section h2 {
   font-size: var(--font-size-xl);
   font-weight: 600;
   color: var(--color-gray-900);
-  margin-bottom: var(--space-md);
+}
+
+.status-cycle-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* TaskModal */
+.task-modal-card {
+  max-width: 520px;
 }

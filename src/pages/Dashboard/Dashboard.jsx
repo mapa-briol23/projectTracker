@@ -34,26 +34,42 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
-
-    async function loadStats() {
-      const { data } = await dashboardApi.getStats();
-      if (!cancelled) {
-        setStats(data);
-        setLoading(false);
-      }
-    }
-
-    loadStats();
-    return () => {
-      cancelled = true;
-    };
+    document.title = 'Dashboard | Project Tracker';
   }, []);
 
-  if (loading || !stats) {
+  async function loadStats() {
+    setLoading(true);
+    setLoadError(false);
+    try {
+      const { data } = await dashboardApi.getStats();
+      setStats(data);
+    } catch {
+      setLoadError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadStats();
+  }, []);
+
+  if (loading) {
     return <LoadingSpinner fullScreen />;
+  }
+
+  if (loadError || !stats) {
+    return (
+      <EmptyState
+        title="Something went wrong"
+        message="We couldn't load your dashboard."
+        actionLabel="Retry"
+        onAction={loadStats}
+      />
+    );
   }
 
   return (

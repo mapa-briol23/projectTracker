@@ -33,6 +33,6 @@ Full specification is in PROJECT_TRACKER_SPEC.md — always reference it.
 
 ## Current Phase
 
-Phase 6 — Project CRUD (complete)
-Next: Phase 7 — Task CRUD
-(Update this line manually as you complete each phase)
+Phase 8 — Profile Page + Polish + Final Fixes (complete)
+All 8 phases of the spec are now complete.
+(Update this line manually if further work resumes)

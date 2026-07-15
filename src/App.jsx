@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import ProjectList from './pages/Projects/ProjectList';
 import ProjectForm from './pages/Projects/ProjectForm';
 import ProjectDetail from './pages/Projects/ProjectDetail';
+import Profile from './pages/Profile/Profile';
+import NotFound from './pages/NotFound/NotFound';
 import './App.css';
 
 function AppLayout({ children }) {
@@ -79,7 +81,17 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <AppLayout>
-              <div>Profile</div>
+              <Profile />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <ProtectedRoute>
+            <AppLayout>
+              <NotFound />
             </AppLayout>
           </ProtectedRoute>
         }
