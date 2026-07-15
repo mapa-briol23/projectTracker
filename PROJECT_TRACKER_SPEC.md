@@ -225,6 +225,7 @@ CREATE TABLE IF NOT EXISTS projects (
   priority TEXT NOT NULL DEFAULT 'medium' CHECK (priority IN ('low', 'medium', 'high')),
   start_date DATE,
   end_date DATE,
+  smartsheet_url TEXT,
   created_by UUID NOT NULL REFERENCES profiles(id),
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now()
@@ -323,6 +324,17 @@ CREATE INDEX IF NOT EXISTS idx_tasks_project_id ON tasks(project_id);
 CREATE INDEX IF NOT EXISTS idx_tasks_assigned_to ON tasks(assigned_to);
 CREATE INDEX IF NOT EXISTS idx_tasks_status ON tasks(status);
 ```
+
+### Migration: Smartsheet Link Field
+Added after the initial schema so PM/App Support can attach the Smartsheet form/sheet a
+project is automated with. If your `projects` table already exists (i.e. you ran the
+schema above before this field was added), run this once in the SQL Editor:
+
+```sql
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS smartsheet_url TEXT;
+```
+
+Nullable/optional — not every project needs one.
 
 ### Seed Data (Test Users)
 After running the schema, create test users via Supabase Auth dashboard:

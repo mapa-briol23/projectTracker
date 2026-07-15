@@ -72,7 +72,7 @@ async function getById(req, res) {
 }
 
 async function create(req, res) {
-  const { name, description, status, priority, start_date, end_date } = req.body;
+  const { name, description, status, priority, start_date, end_date, smartsheet_url } = req.body;
 
   if (!name) {
     return res.status(400).json({ error: 'Project name is required' });
@@ -87,6 +87,7 @@ async function create(req, res) {
       priority,
       start_date: start_date || null,
       end_date: end_date || null,
+      smartsheet_url: smartsheet_url || null,
       created_by: req.user.id,
     })
     .select()
@@ -101,7 +102,7 @@ async function create(req, res) {
 
 async function update(req, res) {
   const { id } = req.params;
-  const { name, description, status, priority, start_date, end_date } = req.body;
+  const { name, description, status, priority, start_date, end_date, smartsheet_url } = req.body;
 
   if (!name) {
     return res.status(400).json({ error: 'Project name is required' });
@@ -116,6 +117,7 @@ async function update(req, res) {
       priority,
       start_date: start_date || null,
       end_date: end_date || null,
+      smartsheet_url: smartsheet_url || null,
     })
     .eq('id', id)
     .select()

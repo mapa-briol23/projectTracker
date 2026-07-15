@@ -7,6 +7,7 @@ import {
   RiTeamLine,
   RiCheckboxLine,
   RiCheckboxBlankLine,
+  RiExternalLinkLine,
 } from 'react-icons/ri';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
@@ -132,6 +133,7 @@ export default function ProjectDetail() {
         priority: project.priority,
         start_date: project.start_date,
         end_date: project.end_date,
+        smartsheet_url: project.smartsheet_url,
       });
       showToast('Project status updated', 'success');
       await loadProject();
@@ -249,6 +251,17 @@ export default function ProjectDetail() {
         {tab === 'overview' ? (
           <div className="pd-overview">
             {project.description && <p className="pd-description">{project.description}</p>}
+
+            {project.smartsheet_url && (
+              <a
+                href={project.smartsheet_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pd-smartsheet-link"
+              >
+                <RiExternalLinkLine /> Open in Smartsheet
+              </a>
+            )}
 
             <div className="pd-info-grid">
               <div className="info-card">

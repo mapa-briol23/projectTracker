@@ -29,6 +29,7 @@ function emptyForm() {
     priority: 'medium',
     start_date: todayStr(),
     end_date: '',
+    smartsheet_url: '',
   };
 }
 
@@ -50,6 +51,7 @@ export default function ProjectFormModal({ isOpen, onClose, initialProject, onSu
         priority: initialProject.priority || 'medium',
         start_date: initialProject.start_date || '',
         end_date: initialProject.end_date || '',
+        smartsheet_url: initialProject.smartsheet_url || '',
       });
     } else {
       setForm(emptyForm());
@@ -87,6 +89,9 @@ export default function ProjectFormModal({ isOpen, onClose, initialProject, onSu
     if (form.start_date && form.end_date && form.end_date < form.start_date) {
       nextErrors.end_date = 'End date must be after start date';
     }
+    if (form.smartsheet_url.trim() && !/^https?:\/\/\S+/i.test(form.smartsheet_url.trim())) {
+      nextErrors.smartsheet_url = 'Enter a valid URL (starting with http:// or https://)';
+    }
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   }
@@ -101,6 +106,7 @@ export default function ProjectFormModal({ isOpen, onClose, initialProject, onSu
         ...form,
         start_date: form.start_date || null,
         end_date: form.end_date || null,
+        smartsheet_url: form.smartsheet_url.trim() || null,
       };
       if (isEditMode) {
         await projectApi.update(initialProject.id, payload);
@@ -202,6 +208,19 @@ export default function ProjectFormModal({ isOpen, onClose, initialProject, onSu
                 />
                 {errors.end_date && <span className="field-error">{errors.end_date}</span>}
               </div>
+            </div>
+
+            <div className="pfm-field">
+              <label htmlFor="pfm-smartsheet">Smartsheet Link</label>
+              <input
+                id="pfm-smartsheet"
+                type="url"
+                placeholder="https://app.smartsheet.com/sheets/..."
+                value={form.smartsheet_url}
+                onChange={handleChange('smartsheet_url')}
+                className={errors.smartsheet_url ? 'input-error' : ''}
+              />
+              {errors.smartsheet_url && <span className="field-error">{errors.smartsheet_url}</span>}
             </div>
           </div>
 
